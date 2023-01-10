@@ -46,8 +46,6 @@ def update_user(id):
 
 @app.route("/process", methods=["POST"])
 def process():
-    if not "logged_in" in session:
-        return redirect("/")
     if request.form["which_form"] == "registration":
         if not user.User.validate_user(request.form):
             return redirect("/")
