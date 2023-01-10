@@ -1,0 +1,72 @@
+{% extends "partials/base.html" %} {% block body %}
+<div class="container-fluid d-flex p-3 justify-content-around">
+    <form
+        action="/process"
+        class="d-flex flex-column col-md-5 p-3 gap-3 bg-dark text-primary"
+        method="POST"
+    >
+        <h2>Register</h2>
+        {% with messages = get_flashed_messages(category_filter="register") %}
+        {% if messages %}
+        <div class="alert alert-danger p-3">
+            {% for message in messages %}
+            <p>{{message}}</p>
+
+            {% endfor %}
+        </div>
+        {% endif %} {% endwith%}
+        <input type="hidden" name="which_form" value="registration" />
+        <div class="form-group">
+            <label for="first_name" class="form-label">First Name</label>
+            <input name="first_name" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input name="last_name" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input name="email" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input name="password" type="password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="confirm" class="form-label">Confirm Password</label>
+            <input name="confirm" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary">Register</button>
+        </div>
+    </form>
+    <form
+        action="/process"
+        method="POST"
+        class="col-md-5 p-3 gap-3 bg-dark text-success"
+    >
+        <h2>Login</h2>
+        {% with messages = get_flashed_messages(category_filter="login") %} {%
+        if messages %}
+        <div class="alert alert-danger p-3">
+            {% for message in messages %}
+            <p>{{message}}</p>
+
+            {% endfor %}
+        </div>
+        {% endif %} {% endwith%}
+        <input type="hidden" name="which_form" value="login" />
+        <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input name="email" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input name="password" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success">Login</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

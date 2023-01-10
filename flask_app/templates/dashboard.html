@@ -1,0 +1,14 @@
+{% extends 'partials/base.html' %}{% block body %}
+<div class="container">
+    <h1>Magazines</h1>
+    <div class="border p-4">
+        {% for magazine in all_magazines %}
+        <p>
+            <a href="/magazines/{{magazine.id}}">{{magazine.title}}</a> added by
+            {{magazine.creator.full_name()}}
+            <a href="/subscribe/{{logged_in.id}}/{{magazine.id}}">subscribe</a>
+        </p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

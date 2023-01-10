@@ -1,0 +1,81 @@
+<!-- prettier-ignore -->
+{
+{% macro form_start(action, title, filter=None) %}
+<form
+    class="d-flex flex-column p-4 bg-dark text-light gap-3 col-md-5 mx-auto"
+    action="{{action}}"
+    method="post"
+>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="alert alert-danger p-3">
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+    </div>
+    {% endif %} {% endwith %}
+    <h2>{{title}}</h2>
+    {% endmacro %} {% macro hidden_input(name, value ) %}
+    <input type="hidden" name="{{name}}" value="{{value}}" />
+    {% endmacro%}
+    <!-- prettier-ignore -->
+    {
+
+{% macro input_groups(fields) %} 
+
+{% for field in fields %}
+    <div class="form-group">
+        <label for="{{field[0]}}" class="form-label"
+            >{{field[0] | capitalize }}</label
+        >
+        <input
+            name="{{field[0]}}"
+            value="{{field[1]}}"
+            type="{{field[2]}}"
+            class="form-control"
+        />
+    </div>
+    {% endfor %} {% endmacro %} }
+
+    <!-- prettier-ignore -->
+    {% macro radio_group(name, choices) %}
+    {% if (choices | length) < 3 %}
+    <div class="d-flex flex-row gap-2">
+        {% endif %} {% for choice in choices %}
+        <div class="form-check">
+            {% if choice[1] %}
+            <input
+                type="radio"
+                name="{{name}}"
+                checked="checked"
+                class="form-check-input"
+            />
+            {% else %}
+            <input type="radio" name="{{name}}" class="form-check-input" />
+            {% endif %}
+            <label for="{{name}}" class="form-check-label">{{choice[0]}}</label>
+        </div>
+        {% endfor %} {% if choices | length < 3 %}
+    </div>
+    {% endif %} {% endmacro %}
+
+    <!-- prettier-ignore -->
+    {% macro select_group(label, name, choices) %}
+    <div class="form-group d-flex justify-content-between">
+        <label for="{{name}}" class="form-label">{{label}}</label>
+        <select name="{{name}}" class="form-selcet w-50">
+            {% for choice in choices %}
+            <option value="{{choice[1]}}">{{choice[0]}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    {% endmacro %}
+
+    <!-- prettier-ignore -->
+    {
+
+        {% macro form_end(button_value) %}
+    <div class="form-group text-end">
+        <button class="btn btn-primary">{{button_value}}</button>
+    </div>
+</form>
+{% endmacro %} }

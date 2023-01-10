@@ -1,0 +1,19 @@
+{% extends 'partials/base.html' %} {% from "macros/form.html" import form_start,
+form_end, input_groups, hidden_input %} {% block body %}
+<div class="container">
+    <div>
+        {{form_start("/users/edit/" + logged_in.id | string, "Update user
+        magazine")}} {{hidden_input("users_id", logged_in.id)}}
+        {{input_groups([("first_name", logged_in.first_name,
+        "text"),("last_name", logged_in.last_name, "text"),("email",
+        logged_in.email, "text")])}} {{form_end("Update Account")}}
+    </div>
+    <div class="border border-dark">
+        {% for magazine in logged_in.magazines %}
+        <p>{{magazine.title}}</p>
+        <a href="/magazines/delete/{{magazine.id}}">Delete</a>
+        <p>{{magazine.subscribers | length}} subscribers</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

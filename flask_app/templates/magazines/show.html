@@ -1,0 +1,12 @@
+{% extends 'partials/base.html' %} {% block body %}
+<div class="container p-4">
+    <h1>{{mag.title}}</h1>
+    <p>Added by {{mag.creator.full_name()}}</p>
+    <p>Description: {{mag.description}}</p>
+
+    <h3>Subscribers</h3>
+    {% for sub in mag.subscribers %}
+    <p>- {{sub.full_name()}}</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends 'partials/base.html' %}{% block body %} {% from "macros/form.html"
+import form_start, form_end, input_groups, hidden_input %} {{
+form_start("/magazines", "Add a magazine")}} {{hidden_input("users_id",
+logged_in.id)}} {{input_groups([("title", "", "text")])}}
+<label for="description" class="form-label">Description</label>
+<textarea name="description" cols="30" rows="10"></textarea>
+{{form_end("Add")}} {% endblock %}
